@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://proud-bush-0f3185c10.2.azurestaticapps.net/sitemap.xml
