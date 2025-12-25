@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UpData - Digitaliza, Visualiza, Crece</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #1a3a52;
+            --secondary-color: #0f2537;
+            --accent-color: #2563eb;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            scroll-behavior: smooth;
+        }
+
+        /* Header */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-image {
+            width: 50px;
+            height: 50px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--white);
+            padding: 150px 2rem 80px;
+            text-align: center;
+        }
+
+        .hero-logo {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            background: var(--white);
+            color: var(--primary-color);
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        /* Sections */
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 2rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Plans Categories */
+        .plans-category {
+            margin-bottom: 4rem;
+        }
+
+        .category-title {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            text-align: center;
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 1rem;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            position: relative;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-card h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card .price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin: 1rem 0;
+        }
+
+        .service-card ul {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .service-card li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .service-card li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .package-label {
+            display: inline-block;
+            background: var(--accent-color);
+            color: var(--white);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .best-value {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: #dc2626;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+
+        .maintenance-options {
+            background: var(--bg-light);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .maintenance-options h4 {
+            color: var(--primary-color);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .maintenance-option {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.3rem 0;
+            font-size: 0.9rem;
+        }
+
+        .customization-note {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 5px solid #f59e0b;
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .customization-note h3 {
+            color: #92400e;
+            margin-bottom: 1rem;
+        }
+
+        .customization-note p {
+            color: #78350f;
+            font-size: 1.1rem;
+        }
+
+        /* Why Choose Us */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Privacy Section */
+        #privacidad {
+            background: var(--bg-light);
+        }
+
+        .privacy-content {
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .privacy-content h3 {
+            color: var(--primary-color);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Contact Section */
+        #contacto {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--white);
+            text-align: center;
+        }
+
+        #contacto h2 {
+            color: var(--white);
+        }
+
+        .contact-methods {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            text-align: center;
+        }
+
+        .contact-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-item a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .contact-item a:hover {
+            opacity: 0.8;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* WhatsApp Float Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25d366;
+            color: var(--white);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 1000;
+            cursor: pointer;
+            transition: transform 0.3s;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .tagline {
+                font-size: 1.2rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .contact-methods {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo-container">
+                <img class="logo-image" src="Logo de UpData.png" alt="UpData Logo">
+            </div>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#nosotros">Por qué elegirnos</a></li>
+                <li><a href="#privacidad">Privacidad</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <h1>UpData</h1>
+        <p class="tagline">Digitaliza, Visualiza, Crece</p>
+        <p style="font-size: 1.2rem; margin-bottom: 2rem;">Transformamos tus documentos en papel a datos digitales organizados con reportes visuales que impulsan tus ventas</p>
+        <a href="#contacto" class="cta-button">Comienza Ahora</a>
+    </section>
+
+    <!-- Main Plans Preview -->
+    <section id="planes-principales" style="background: var(--bg-light);">
+        <h2>Planes Populares</h2>
+        <p class="section-subtitle">Comienza con nuestros planes más solicitados</p>
+        
+        <div class="services-grid">
+            <!-- Plan Individual 100 -->
+            <div class="service-card">
+                <span class="package-label">INDIVIDUAL</span>
+                <h3>Plan 100</h3>
+                <div class="price">$100</div>
+                <ul>
+                    <li>150 páginas digitalizadas</li>
+                    <li>Conversión a Excel</li>
+                    <li>2 tablas dinámicas</li>
+                    <li>Organización de datos</li>
+                    <li>Entrega: 2 semanas</li>
+                </ul>
+            </div>
+
+            <!-- Plan Individual 300 -->
+            <div class="service-card">
+                <span class="package-label">INDIVIDUAL</span>
+                <h3>Plan 300</h3>
+                <div class="price">$300</div>
+                <ul>
+                    <li>250 páginas digitalizadas</li>
+                    <li>Conversión a Excel optimizado</li>
+                    <li>2 tablas dinámicas</li>
+                    <li>Limpieza de datos</li>
+                    <li>Entrega: 2-3 semanas</li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 2rem;">
+            <a href="#servicios" class="cta-button">Ver Todos los Planes</a>
+        </div>
+    </section>
+
+    <!-- All Services Section -->
+    <section id="servicios">
+        <h2>Todos Nuestros Servicios</h2>
+        
+        <!-- PLANES INDIVIDUALES -->
+        <div class="plans-category">
+            <h3 class="category-title">📊 Planes Individuales</h3>
+            <div class="services-grid">
+                <!-- Plan 100 -->
+                <div class="service-card">
+                    <h3>Plan 100</h3>
+                    <div class="price">$100</div>
+                    <ul>
+                        <li>150 páginas digitalizadas</li>
+                        <li>Conversión a Excel</li>
+                        <li>2 tablas dinámicas</li>
+                        <li>Organización básica de datos</li>
+                        <li>Entrega: 2 semanas</li>
+                    </ul>
+                </div>
+
+                <!-- Plan 300 -->
+                <div class="service-card">
+                    <h3>Plan 300</h3>
+                    <div class="price">$300</div>
+                    <ul>
+                        <li>250 páginas digitalizadas</li>
+                        <li>Conversión a Excel optimizado</li>
+                        <li>2 tablas dinámicas</li>
+                        <li>Limpieza de datos</li>
+                        <li>Entrega: 2-3 semanas</li>
+                    </ul>
+                </div>
+
+                <!-- Plan 500 -->
+                <div class="service-card">
+                    <h3>Plan 500</h3>
+                    <div class="price">$500</div>
+                    <ul>
+                        <li>600 páginas digitalizadas</li>
+                        <li>Conversión a Excel avanzado</li>
+                        <li>5 tablas dinámicas</li>
+                        <li>Estructuración completa</li>
+                        <li>Análisis básico incluido</li>
+                        <li>Entrega: 3 semanas</li>
+                    </ul>
+                </div>
+
+                <!-- Plan 1000 -->
+                <div class="service-card">
+                    <span class="best-value">MEJOR VALOR</span>
+                    <h3>Plan 1000</h3>
+                    <div class="price">$1,000</div>
+                    <ul>
+                        <li>1,000 páginas digitalizadas</li>
+                        <li>Base de datos estructurada</li>
+                        <li>5 tablas dinámicas profesionales</li>
+                        <li>Limpieza y validación de datos</li>
+                        <li>Análisis detallado incluido</li>
+                        <li>Entrega: 4 semanas</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAQUETES CON MANTENIMIENTO -->
+        <div class="plans-category">
+            <h3 class="category-title">🎁 Paquetes con Mantenimiento</h3>
+            <div class="services-grid">
+                <!-- Paquete Básico -->
+                <div class="service-card">
+                    <span class="package-label">PAQUETE BÁSICO</span>
+                    <h3>Plan Básico</h3>
+                    <div class="price">$150</div>
+                    <p style="color: var(--text-light); margin-bottom: 1rem;">Pago inicial</p>
+                    <ul>
+                        <li>250 páginas digitalizadas</li>
+                        <li>3 tablas dinámicas interactivas</li>
+                        <li>Organización de datos</li>
+                        <li>Revisiones mensuales de datos</li>
+                    </ul>
+                    <div class="maintenance-options">
+                        <h4>Opciones de Mantenimiento:</h4>
+                        <div class="maintenance-option">
+                            <span>6 meses</span>
+                            <strong>$50/mes</strong>
+                        </div>
+                        <div class="maintenance-option">
+                            <span>9 meses</span>
+                            <strong>$45/mes</strong>
+                        </div>
+                        <div class="maintenance-option">
+                            <span>12 meses</span>
+                            <strong>$35/mes</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Paquete Premium -->
+                <div class="service-card" style="border: 2px solid var(--primary-color);">
+                    <span class="package-label" style="background: #059669;">PAQUETE PREMIUM</span>
+                    <h3>Plan Premium</h3>
+                    <div class="price">$350</div>
+                    <p style="color: var(--text-light); margin-bottom: 1rem;">Pago inicial</p>
+                    <ul>
+                        <li>500 páginas digitalizadas</li>
+                        <li>5 tablas dinámicas avanzadas</li>
+                        <li>App móvil para ver tus datos</li>
+                        <li>Análisis de tendencias</li>
+                        <li>Revisiones mensuales personalizadas</li>
+                    </ul>
+                    <div class="maintenance-options">
+                        <h4>Opciones de Mantenimiento:</h4>
+                        <div class="maintenance-option">
+                            <span>6 meses</span>
+                            <strong>$50/mes</strong>
+                        </div>
+                        <div class="maintenance-option">
+                            <span>9 meses</span>
+                            <strong>$45/mes</strong>
+                        </div>
+                        <div class="maintenance-option">
+                            <span>12 meses</span>
+                            <strong>$35/mes</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Paquete Deluxe -->
+                <div class="service-card" style="border: 3px solid #dc2626;">
+                    <span class="best-value">PLAN COMPLETO</span>
+                    <span class="package-label" style="background: #dc2626;">PAQUETE DELUXE</span>
+                    <h3>Plan Deluxe</h3>
+                    <div class="price">$750</div>
+                    <p style="color: var(--text-light); margin-bottom: 1rem;">Pago inicial</p>
+                    <ul>
+                        <li>850 páginas digitalizadas</li>
+                        <li>Tablas dinámicas ilimitadas</li>
+                        <li>App móvil personalizada</li>
+                        <li>Subida en la nube (almacenamiento)</li>
+                        <li>Análisis predictivo de ventas</li>
+                        <li>Consultoría incluida</li>
+                        <li>Revisiones mensuales completas</li>
+                    </ul>
+                    <div class="maintenance-options">
+                        <h4>Opciones de Mantenimiento:</h4>
+                        <div class="maintenance-option">
+                            <span>6 meses</span>
+                            <strong>$50/mes</strong>
+                        </div>
+                        <div class="maintenance-option">
+                            <span>9 meses</span>
+                            <strong>$45/mes</strong>
+                        </div>
+                        <div class="maintenance-option">
+                            <span>12 meses</span>
+                            <strong>$35/mes</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Customization Note -->
+        <div class="customization-note">
+            <h3>⚙️ Planes 100% Personalizables</h3>
+            <p><strong>Todos nuestros planes están sujetos a personalización</strong> según las necesidades específicas de tu negocio y la infraestructura que requieras para mejorar la calidad de tu información. Contáctanos para crear un plan a tu medida.</p>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section id="nosotros" style="background: var(--bg-light);">
+        <h2>¿Por Qué Elegirnos?</h2>
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="feature-icon">⚡</div>
+                <h3>Entrega Rápida</h3>
+                <p>Completamos tu proyecto entre 2 a 4 semanas dependiendo de la complejidad, sin sacrificar la calidad.</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🎯</div>
+                <h3>Soporte Personalizado</h3>
+                <p>Adaptamos nuestros servicios a las necesidades específicas de tu negocio con atención dedicada.</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🔒</div>
+                <h3>Seguridad Garantizada</h3>
+                <p>Tus datos están seguros con nosotros. No guardamos copias sin tu autorización expresa.</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">📊</div>
+                <h3>Visualización Clara</h3>
+                <p>Transformamos datos complejos en gráficos intuitivos que te ayudan a tomar mejores decisiones.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy Section -->
+    <section id="privacidad">
+        <h2>Políticas de Privacidad y Seguridad</h2>
+        <div class="privacy-content">
+            <h3>Tu Información Está Protegida</h3>
+            <p>En UpData, la seguridad y privacidad de tus datos son nuestra máxima prioridad. Nos comprometemos a manejar tu información con el más alto nivel de confidencialidad y profesionalismo.</p>
+
+            <h3>Manejo de Documentos</h3>
+            <p>Una vez completado el proceso de digitalización, <strong>NO guardamos copias de tus documentos ni datos</strong> en nuestros sistemas. Toda la información procesada es entregada exclusivamente a ti.</p>
+
+            <h3>Copias de Seguridad</h3>
+            <p>Únicamente guardaremos una copia de seguridad de tus datos si tú lo solicitas expresamente. Esta copia se almacenará de forma encriptada y segura, y solo será accesible mediante tu autorización.</p>
+
+            <h3>Uso de la Información</h3>
+            <p>Tu información <strong>NUNCA</strong> será:</p>
+            <ul style="list-style: disc; margin-left: 2rem; margin-top: 1rem;">
+                <li>Compartida con terceros</li>
+                <li>Utilizada para otros proyectos</li>
+                <li>Vendida o comercializada</li>
+                <li>Almacenada sin tu consentimiento</li>
+            </ul>
+
+            <h3>Confidencialidad</h3>
+            <p>Todo nuestro equipo firma acuerdos de confidencialidad y está capacitado en las mejores prácticas de seguridad de datos. Cumplimos con todas las normativas de protección de datos vigentes.</p>
+
+            <h3>Eliminación de Datos</h3>
+            <p>Una vez finalizado el proyecto y entregados todos los archivos, procedemos a la eliminación segura e irrecuperable de toda la información de nuestros sistemas de trabajo temporales.</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto">
+        <h2>¿Listo para Transformar tu Negocio?</h2>
+        <p style="font-size: 1.2rem; margin-bottom: 1rem;">Contáctanos ahora y comienza a tomar decisiones basadas en datos</p>
+        <div class="contact-methods">
+            <div class="contact-item">
+                <div class="contact-icon">📱</div>
+                <p style="margin-bottom: 0.5rem;">WhatsApp</p>
+                <a href="https://wa.me/50764088624" target="_blank">+507 6408-8624</a>
+                <p style="font-size: 0.9rem; margin-top: 0.5rem; opacity: 0.9;">(Haz clic para chatear)</p>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">✉️</div>
+                <p style="margin-bottom: 0.5rem;">Correo Electrónico</p>
+                <a href="mailto:updata.services@gmail.com">updata.services@gmail.com</a>
+                <p style="font-size: 0.9rem; margin-top: 0.5rem; opacity: 0.9;">(Respuesta en 24h)</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 UpData - Todos los derechos reservados</p>
+        <p style="margin-top: 0.5rem;">Digitaliza, Visualiza, Crece</p>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/50764088624" class="whatsapp-float" target="_blank" title="Chatea con nosotros">
+        💬
+    </a>
+</body>
+</html>
